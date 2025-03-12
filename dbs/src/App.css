@@ -5,89 +5,38 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background-color: #f8f9fa;
+/* Style for header */
+.header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-}
-
-.container {
-  width: 100%;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-  text-align: center;
+  background-color: #fff;
+  padding: 10px 20px;
   color: #333;
-  margin-bottom: 15px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Style for navigation links (buttons) */
+nav {
+  display: flex; /* This will arrange the buttons in a row */
+  gap: 10px; /* Optional: add spacing between the buttons */
 }
 
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-button {
-  background: #007bff;
-  color: white;
-  padding: 10px;
+.header-link {
+  background: none;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  color: black;
   font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: 'Arial', sans-serif;
 }
 
-button:hover {
-  background: #0056b3;
+.header-link:hover {
+  color: #f0a500;
+  text-decoration: none;
 }
 
-.post {
-  background: #fff;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.post h3 {
-  margin-bottom: 10px;
-}
-
-.post p {
-  color: #555;
-}
-
-.post small {
-  display: block;
-  margin-top: 10px;
-  color: #777;
-}
-
-.like-button {
-  background: #28a745;
-  margin-top: 10px;
-}
-
-.like-button:hover {
-  background: #218838;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 90%;
-  }
+/* Optional: Add some spacing around the buttons */
+nav button {
+  margin: 0;
 }

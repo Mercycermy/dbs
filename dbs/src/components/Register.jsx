@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./styles.css";
 
 const API_URL = "http://localhost:3001";
 
@@ -11,37 +12,43 @@ function Register({ toggleForm }) {
     try {
       await axios.post(`${API_URL}/register`, registerData);
       alert("Registration Successful! You can now log in.");
-      toggleForm(); // Switch to login after registration
+      toggleForm();
     } catch (err) {
       alert("Registration failed!");
     }
   };
 
   return (
-    <div className="container">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={registerData.username}
-          onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={registerData.password}
-          onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
-        />
-        <button type="submit">Register</button>
-      </form>
-      <p>
-  Already have an account?{" "}
-  <span className="link-text" onClick={toggleForm}>
-    Login here
-  </span>
-</p>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Sign up</h2>
+        <form onSubmit={handleRegister}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={registerData.username}
+            onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
+            required
+          />
 
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Create a password"
+            value={registerData.password}
+            onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+            required
+          />
+          <button type="submit">Sign up</button>
+        </form>
+        <p>
+          Already have an account?{" "}
+          <span className="link-text" onClick={toggleForm}>
+            Log in
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

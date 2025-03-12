@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./styles.css";
 
 const API_URL = "http://localhost:3001";
 
@@ -13,34 +14,41 @@ function Login({ setToken, toggleForm }) {
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
     } catch (err) {
-      alert("Login failed!");
+      alert("Invalid login credentials!");
     }
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={loginData.username}
-          onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={loginData.password}
-          onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p>
-  Don't have an account?{" "}
-  <span className="link-text" onClick={toggleForm}>
-    Register here
-  </span>
-</p>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Sign in</h2>
+        <form onSubmit={handleLogin}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={loginData.username}
+            onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+            required
+          />
+
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={loginData.password}
+            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+            required
+          />
+          <button type="submit">Log in</button>
+        </form>
+        <p>
+          Don't have an account?{" "}
+          <span className="link-text" onClick={toggleForm}>
+            Register here
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
