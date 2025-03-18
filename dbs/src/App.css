@@ -6,37 +6,55 @@
 }
 
 /* Style for header */
+/* Header Styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  padding: 10px 20px;
-  color: #333;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 15px 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for navigation links (buttons) */
-nav {
-  display: flex; /* This will arrange the buttons in a row */
-  gap: 10px; /* Optional: add spacing between the buttons */
-}
-
-.header-link {
-  background: none;
-  border: none;
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: underline;
-  font-family: 'Arial', sans-serif;
-}
-
-.header-link:hover {
-  color: #f0a500;
-  text-decoration: none;
-}
-
-/* Optional: Add some spacing around the buttons */
-nav button {
+.header h1 {
   margin: 0;
+  font-size: 2rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Logout Button */
+nav button {
+  background: rgb(0, 0, 0);
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+nav button:hover {
+  background: #292929;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
 }

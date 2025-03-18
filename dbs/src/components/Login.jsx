@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./styles.css";
 
 const API_URL = "http://localhost:3001";
 
-function Login({ setToken, toggleForm }) {
+function Login({ setToken }) {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -13,6 +17,7 @@ function Login({ setToken, toggleForm }) {
       const res = await axios.post(`${API_URL}/login`, loginData);
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
+      navigate(from, { replace: true });
     } catch (err) {
       alert("Invalid login credentials!");
     }
@@ -42,12 +47,6 @@ function Login({ setToken, toggleForm }) {
           />
           <button type="submit">Log in</button>
         </form>
-        <p>
-          Don't have an account?{" "}
-          <span className="link-text" onClick={toggleForm}>
-            Register here
-          </span>
-        </p>
       </div>
     </div>
   );

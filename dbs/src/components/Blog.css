@@ -1,18 +1,7 @@
-/* Blog.css */
-.header {
- 
-  padding: 10px;
-  background-color: #f4f4f4;
-}
-
-
-
-
-
 /* Hero Section */
 .Blog-Hero {
   width: 100%;
-  height: 350px;
+  height: 400px;
   position: relative; /* This allows positioning of the title inside the container */
 }
 
@@ -26,14 +15,12 @@
   font-size: 50px;
   color: white;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.4);
   padding: 10px 20px;
   border-radius: 5px;
   position: absolute; /* Position the title within the container */
   bottom: 50%; /* Places the title at the bottom of the container */
   left: 20px; /* Adds some space from the left side */
 }
-
 
 /* Search Bar */
 .search-container {
@@ -50,68 +37,63 @@
   border-radius: 5px;
 }
 
-/* Blog Posts Grid */
+/* Blog container */
 .blog-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 10px;
- 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    margin: auto;
 }
 
+/* Blog post card */
 .blog-post {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-   width: 100%;
-   height:  auto;
-  
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.6s;
 }
 
-.blog-post:hover {
-  transform: translateY(-5px);
+/* Blog image */
+.blog-images {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.blog-image {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-.blog-post img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
+/* Blog title */
 .blog-title {
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #222;
 }
 
-.blog-content {
-  color: #4B5563;
-}
-
-.read-more {
-  color: #1E40AF;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-
+/* Author meta section */
 .blog-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-size: 14px;
-  color: #6B7280;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #777;
 }
 
-.like-count {
-  color: red;
+
+/* Read more link */
+.read-more {
+    display: inline-block;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
 }
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
 
 /* Pagination */
 .pagination {
@@ -121,24 +103,24 @@
 }
 
 .pagination button {
-  background-color: #ddd;
+  background: #000000;
   border: none;
   padding: 4px 8px;
   margin: 0 5px;
   border-radius: 10px;
   cursor: pointer;
-  width: 40px ;
-}
-
-.pagination button:hover {
-  background-color: #bbb;
-}
-
-.pagination .active {
-  background-color: #1a73e8;
+  width: 40px;
   color: white;
 }
 
+.pagination button:hover {
+  background-color: #313131;
+}
+
+.pagination .active {
+  background-color: #131314;
+  color: white;
+}
 
 .pagination-page {
   padding: 0.5rem 1rem;
@@ -146,61 +128,212 @@
 
 /* Newsletter Subscription */
 .newsletter {
-  background-color: #1a237e;
-  color: #f5f5f5;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows stacking on small screens */
+  gap: 15px; /* Adds spacing */
   text-align: center;
-  padding: 40px 20px;
-  margin-top: 40px;
 }
 
 .newsletter h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  flex: 1 100%; /* Full width on small screens */
+  text-align: center;
+  margin: 10px;
 }
 
-.newsletter p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.newsletter input {
-  width: 40%;
+.newsletter-input {
+  flex: 1;
+  min-width: 250px;
+  max-width: 600px;
   padding: 12px;
-  border: none;
-  border-radius: 5px 0 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   font-size: 16px;
+  outline: none;
 }
 
-.newsletter button {
-  padding: 12px 20px;
-  background-color:rgb(91, 152, 226);
-  color: #1a237e;
+.newsletter-button {
+  background-color: #f7931e; /* Orange */
+  color: white;
   border: none;
-  font-size: 16px;
+  padding: 12px 30px;
+  border-radius: 30px; /* Rounded button */
+  font-size: 12px;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  width: 100px;
+  transition: 0.3s ease;
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
-.newsletter button:hover {
-  background-color:rgb(154, 196, 233);
+.newsletter-button:hover {
+  background-color: #e6821c; /* Darker orange */
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .newsletter {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .newsletter h2 {
+    text-align: center;
+  }
+
+  .newsletter-input {
+    width: 100%;
+  }
+
+  .newsletter-button {
+    width: 30%;
+  }
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 36px;
   }
-  
+
   .search-container input {
     width: 80%;
   }
+}
 
-  .blog-container {
+
+@media screen and (max-width: 768px) {
+    .blog-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .blog-post {
+        width: 90%;
+    }
+
+    .blog-title {
+        font-size: 16px;
+    }
+
+    .blog-content {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blog-post {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .blog-title {
+        font-size: 14px;
+    }
+
+    .blog-content {
+        font-size: 12px;
+    }
+}
+/* Footer styles */
+.footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.footer-section h2 {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #bbb;
+}
+
+/* Links */
+.footer-section.links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section.links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section.links ul li a {
+  text-decoration: none;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.footer-section.links ul li a:hover {
+  color: #fff;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a {
+  color: #bbb;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+/* Copyright */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #777;
+}
+
+.footer-bottom .heart {
+  color: red;
+}
+
+.footer-bottom a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
     grid-template-columns: 1fr;
+    text-align: center;
   }
 
-  .newsletter input {
-    width: 60%;
+  .social-icons {
+    justify-content: center;
   }
 }

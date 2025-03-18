@@ -1,93 +1,50 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/Login";
-import Register from "./components/Register";
-import BlogList from "./components/BlogList";
-import BlogDetail from "./components/BlogDetail";
+import Blog from "./components/Blog";
 import CreatePost from "./components/CreatePost";
+import BlogDetail from "./components/BlogDetail"; // Ensure BlogDetail is imported
+import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [isLogin, setIsLogin] = useState(true); // State to switch between login and register
-  const [selectedPage, setSelectedPage] = useState("blogList"); // Track current page
-
-  // Logout function
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken("");
-    setSelectedPage("login"); // Redirect to login after logging out
-  };
 
   return (
-    <div>
-      {/* Header Section */}
-      <header className="header">
-        <h1>Blog App</h1>
-        <nav>
-          {!token ? (
-            isLogin ? (
-              <button className="header-link" onClick={() => setIsLogin(false)}>
-                Sign Up
+    <Router>
+      <div>
+        <header className="header">
+          <h1>Blog App</h1>
+          <nav>
+            {token ? (
+              <button onClick={() => {
+                setToken("");
+                localStorage.removeItem("token");
+              }}>
+                Sign Out
               </button>
-            ) : (
-              <button className="header-link" onClick={() => setIsLogin(true)}>
-                Sign In
-              </button>
-            )
-          ) : (
-            <>
-              <button
-                className="header-link"
-                onClick={() => setSelectedPage("createPost")}
-              >
-                Create Post
-              </button>
-              <button
-                className="header-link"
-                onClick={() => setSelectedPage("blogList")}
-              >
-                Blog List
-              </button>
-              <button className="header-link" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          )}
-        </nav>
-      </header>
+            ) : null}
+          </nav>
+        </header>
 
-      {/* Content Section */}
-      <div className="container">
-        {!token ? (
-          isLogin ? (
-            <Login setToken={setToken} toggleForm={() => setIsLogin(false)} />
-          ) : (
-            <Register toggleForm={() => setIsLogin(true)} />
-          )
-        ) : (
-          <div>
-            {selectedPage === "blogList" && (
-              <BlogList
-                token={token}
-                onSelectPost={(post) => setSelectedPage(post)}
-              />
-            )}
-            {selectedPage === "createPost" && (
-              <CreatePost
-                token={token}
-                onPostCreated={() => setSelectedPage("blogList")}
-              />
-            )}
-            {selectedPage !== "blogList" && selectedPage !== "createPost" && (
-              <BlogDetail
-                post={selectedPage}
-                onBack={() => setSelectedPage("blogList")}
-              />
-            )}
-          </div>
-        )}
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Blog token={token} />} />
+            <Route path="/login" element={<Login setToken={setToken} />} />
+            <Route path="/blog" element={<Blog token={token} />} />
+            <Route
+              path="/createpost"
+              element={
+                <PrivateRoute token={token}>
+                  <CreatePost token={token} />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/blogdetail/:id" element={<BlogDetail />} /> {/* Ensure this route is defined */}
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
